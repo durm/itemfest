@@ -1,0 +1,19 @@
+
+<div>
+	{% if product %}
+		<h1>{{ product.name }}</h1>
+		<p>{{ product.desc }}</p>
+		<img src="/media/{{ product.image }}"/>
+		{% with ingredient_fractions=product.get_ingredient_fractions %}
+		    <ul>
+				{% for fraction in ingredient_fractions %}
+					<li>
+						{{ fraction.ingredient.name }}: {{ fraction.mass }}
+					</li>
+				{% endfor %}
+			</ul>
+		{% endwith %}
+	{% else %}
+		Product #{{ product_id }} doesn't exist
+	{% endif %}
+</div>
